@@ -1,7 +1,11 @@
 /* eslint-disable no-undef */
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'ap-blue': '#4788C7',
+      },
+    },
   },
   variants: {},
   plugins: [],
@@ -13,5 +17,5 @@ module.exports = {
       './app/**/*.js',
       './app/**/*.erb',
     ],
-  }
+  },
 };
