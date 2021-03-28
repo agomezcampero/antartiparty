@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_184341) do
+ActiveRecord::Schema.define(version: 2021_03_28_024341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,45 @@ ActiveRecord::Schema.define(version: 2021_03_27_184341) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "bets", force: :cascade do |t|
+    t.integer "value"
+    t.integer "points"
+    t.string "color"
+    t.bigint "game_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "round_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "winner", default: false
+    t.index ["game_id"], name: "index_bets_on_game_id"
+    t.index ["round_id"], name: "index_bets_on_round_id"
+    t.index ["user_id"], name: "index_bets_on_user_id"
+  end
+
+  create_table "game_users", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_game_users_on_game_id"
+    t.index ["user_id"], name: "index_game_users_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "number"
+    t.integer "white"
+    t.integer "blue"
+    t.bigint "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_rounds_on_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -53,4 +92,10 @@ ActiveRecord::Schema.define(version: 2021_03_27_184341) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bets", "games"
+  add_foreign_key "bets", "rounds"
+  add_foreign_key "bets", "users"
+  add_foreign_key "game_users", "games"
+  add_foreign_key "game_users", "users"
+  add_foreign_key "rounds", "games"
 end
