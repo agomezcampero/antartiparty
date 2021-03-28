@@ -10,6 +10,7 @@ const initialState = {
   gameId: null,
   betPlaced: false,
   standings: [],
+  currentUser: null,
 };
 
 const mutations = {
@@ -25,11 +26,20 @@ const mutations = {
   setStandings(state, payload) {
     state.standings = payload;
   },
+  setCurrentUser(state, payload) {
+    state.currentUser = payload;
+  },
 };
 
 const actions = {
   removeNumber({ commit, state }, payload) {
     commit('setAvailableNumbers', state.availableNumbers.filter(val => val !== payload));
+  },
+  addUser({ commit, state }, payload) {
+    if (state.standings.find(user => user.id === payload.id)) return;
+
+    commit('setStandings',
+      [...state.standings, { id: payload.id, username: payload.username, points: 0 }]);
   },
 };
 

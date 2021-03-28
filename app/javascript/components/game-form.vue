@@ -1,20 +1,8 @@
 <template>
   <div class="mx-4">
     <h1 class="mb-4 text-3xl">
-      Crear nueva partida
+      Crear nuevo AntartiParty
     </h1>
-    <multiselect
-      class="mb-4"
-      :options="users"
-      v-model="selectedUsers"
-      :multiple="true"
-      :close-on-select="false"
-      :clear-on-select="false"
-      :preserve-search="true"
-      :searchable="true"
-      track-by="id"
-      label="email"
-    />
     <button
       class="px-8 py-2 text-xl text-white bg-ap-blue"
       @click="createGame"
@@ -38,7 +26,7 @@ export default {
   },
   methods: {
     createGame() {
-      gamesApi.create({ userIds: this.selectedUsers.map(user => user.id) }).then(({ data }) => {
+      gamesApi.create().then(({ data }) => {
         window.location.href = `/games/${data.id}`;
       });
     },

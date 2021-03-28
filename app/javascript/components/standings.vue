@@ -6,7 +6,7 @@
           Lugar
         </th>
         <th class="px-2 py-3">
-          Email
+          Nombre
         </th>
         <th class="px-2 py-3">
           Puntos
@@ -15,13 +15,13 @@
       <tr
         class="text-black bg-gray-100 border-b border-gray-200"
         v-for="(user, idx) in standings"
-        :key="user.email"
+        :key="idx"
       >
         <td class="px-2 py-3">
           {{ idx + 1 }}
         </td>
         <td class="px-2 py-3 break-all">
-          {{ user.email }}
+          {{ user.username }}
         </td>
         <td class="px-2 py-3">
           {{ user.points }}

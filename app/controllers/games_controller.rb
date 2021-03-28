@@ -1,11 +1,7 @@
 class GamesController < ApplicationController
   include AuthConcern
 
-  before_action :check_user_signed_in
-
   def show
-    redirect_to '/users/sign_in' unless current_user
-
     @game = Game.find(params[:id])
     @users = @game.users
     @round = @game.rounds.last
