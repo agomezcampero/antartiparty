@@ -5,7 +5,7 @@ class Game < ApplicationRecord
 
   def standings
     users.map do |user|
-      { email: user.email, points: user.points(self) }
+      { id: user.id, username: user.username, points: user.points(self) }
     end.sort_by { |user| -user[:points] }
   end
 end

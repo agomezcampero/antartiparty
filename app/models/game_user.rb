@@ -1,4 +1,6 @@
 class GameUser < ApplicationRecord
+  include PowerTypes::Observable
+
   belongs_to :game
   belongs_to :user
   has_many :bets

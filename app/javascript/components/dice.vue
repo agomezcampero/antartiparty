@@ -13,7 +13,7 @@
         class="overflow-hidden overflow-ellipsis"
         :class="result.winner ? 'text-green-500' : 'text-red-500'"
       >
-        {{ result.value }} - {{ result.user.email }}
+        {{ result.value }} - {{ result.user.username }}
       </div>
     </div>
     <multiselect

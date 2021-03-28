@@ -6,6 +6,6 @@ class Api::V1::GamesController < Api::V1::BaseController
   private
 
   def game_params
-    params.permit(user_ids: [])
+    current_user ? { users: [current_user] } : nil
   end
 end

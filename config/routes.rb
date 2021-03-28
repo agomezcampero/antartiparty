@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     api_version(module: 'Api::V1', path: { value: 'v1' }, defaults: { format: 'json' }) do
       resources :bets, only: [:create]
       resources :games, only: [:create]
+      resources :game_users, only: [:create]
       resources :rounds, only: [:create]
+      resources :users, only: [:create]
     end
   end
   mount Rswag::Api::Engine => '/api-docs'
