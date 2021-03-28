@@ -1,0 +1,9 @@
+<game
+  :game-id="<%= @game.id %>"
+  :users="<%= @users.to_json %>"
+  :starting-round="<%= @round.to_json %>"
+  :starting-bets-missing="<%= @starting_bets_missing %>"
+  :starting-available-numbers="<%= @starting_available_numbers %>"
+  :starting-bet-placed="<%= @starting_bet_placed %>"
+  :current-standings="<%= @current_standings.to_json %>"
+></game>
